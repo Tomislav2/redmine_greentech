@@ -1,1 +1,1 @@
-# redmine_greentech
+# greentech

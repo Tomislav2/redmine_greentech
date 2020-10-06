@@ -9,11 +9,20 @@ module IssuesHelper
     half = (values.size / 2.0).ceil
     issue_fields_rows do |rows|
       values.each_with_index do |value, i|
-
+        @gts = 'gts'
+        @current_id = 0
         if value.custom_field.id == 33
           value.value = value.value == "" ? "file://T:/gts/#{@issue.id}" : value.value
-          _value = value.value.gsub("https://","").gsub("http://","").gsub("file://T:/gts/#","")
-          value.value = _value=~/(^\d+)/?"file://T:/gts/#{_value}":"file://T:/gts/#{@issue.id}"
+          _value = value.value.gsub("https://","").gsub("http://","").gsub("file://T:/gts/#","").gsub("file://T:/gts-02/#","")
+          if _value=~/(^\d+)/
+            @current_id = _value
+          else
+            @current_id = @issue.id
+          end
+          if @current_id > 6200
+            @gts = 'gts-02'
+          end
+          value.value = _value=~/(^\d+)/?"file://T:/#{@gts}/#{_value}":"file://T:/#{@gts}/#{@issue.id}"
         end
 
         css = "cf_#{value.custom_field.id}"

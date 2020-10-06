@@ -1,11 +1,14 @@
 require 'redmine'
 
+Rails.logger.info 'o:=>'
+Rails.logger.info 'o:=> Starting Redmine Greentech Plugin for Redmine'
+
 Redmine::Plugin.register :redmine_greentech do
-  name 'Redmine greentech plugin'
+  name 'Redmine Custom greentech features plugin'
   author 'Tomislav Kramaric'
   version '0.1'
-  description 'Add the ability to create links to local folders'
-  url 'https://github.com/Tomislav2/redmine_greentech'
+  description 'Add Custom greentech features'
+  url 'https://github.com/Tomislav2/greentech'
   author_url 'https://www.tomislav.net'
   requires_redmine :version_or_higher => '4'
 end
